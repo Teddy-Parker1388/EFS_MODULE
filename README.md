@@ -1,7 +1,7 @@
 # Terrfaform Module to create EFS File System on AWS
 ----------------------------------------------------
 
-## Resource Modules Creates
+## Resources Module Creates
 * ESF FIle System
 * EFS Mount Target
 * EFS Security Group
