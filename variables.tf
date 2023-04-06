@@ -20,12 +20,17 @@ variable "efs_egress" {
 
 }
 
-
+variable "efs_perf_mode" {
+ description = "he performance mode of the EFS file system. Valid values are 'generalPurpose', 'maxIO', and 'throughputOptimized'."
+ type= string
+ default = "generalPurpose"
+  
+}
 
 variable "efs_policy" {
   description = "The policy statement string to apply to the EFS file system"
   type        = string
-  default     = ""
+  default     = null
 }
 
 
