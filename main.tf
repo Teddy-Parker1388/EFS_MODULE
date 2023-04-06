@@ -69,6 +69,7 @@ resource "aws_efs_mount_target" "app_efs_mt" {
 
 
 resource "aws_efs_file_system_policy" "app_efs_policy" {
+  count = var.create_efs_policy ? 1 : 0
   file_system_id = aws_efs_file_system.app_efs.id
 
   policy = var.efs_policy
