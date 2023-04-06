@@ -7,3 +7,5 @@
 * EFS Security Group
 * EFS File System Policy
 -----------------------------------------------------
+## Inputs Supported
+| Name | Description | Type | Default | Required |
