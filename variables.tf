@@ -21,7 +21,7 @@ variable "efs_egress" {
 }
 
 variable "efs_perf_mode" {
- description = "he performance mode of the EFS file system. Valid values are 'generalPurpose', 'maxIO', and 'throughputOptimized'."
+ description = "The performance mode of the EFS file system. Valid values are 'generalPurpose', 'maxIO', and 'throughputOptimized'."
  type= string
  default = "generalPurpose"
   
@@ -33,6 +33,19 @@ variable "create_efs_policy" {
   default = false
   
   
+}
+
+variable "encrypt" {
+  description = "Specifies whether EFS File System shoudl be encrypted"
+  type = bool
+  default = false
+  
+}
+
+variable "throughput_mode" {
+  type        = string
+  description = "The throughput mode of the EFS file system. Valid values are 'bursting' and 'provisioned'."
+  default     = "bursting"
 }
 
 variable "efs_policy" {
