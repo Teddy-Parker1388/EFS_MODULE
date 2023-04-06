@@ -27,6 +27,14 @@ variable "efs_perf_mode" {
   
 }
 
+variable "create_efs_policy" {
+  description = "Create EFS policy Statement ?"
+  type = bool
+  default = false
+  
+  
+}
+
 variable "efs_policy" {
   description = "The policy statement string to apply to the EFS file system"
   type        = string
