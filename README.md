@@ -105,7 +105,8 @@ module "efs_support" {
 # EXAMPLE
 
 ### outputs.tf
+```
 output "efs_dns_name"{
     value = module.efs_support.efs_dns_name
 }
-
+```
