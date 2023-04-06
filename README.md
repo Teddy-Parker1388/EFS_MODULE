@@ -38,6 +38,48 @@
 
 ### main.tf
 ```
+locals {
+    ingress = [{
+        port = 2049
+        protocol = "tcp"
+        cidr = ["0.0.0.0/0"]
+
+    }]
+
+    common_tags = {
+        Name        = var.app_name
+        Product     = var.app_product
+        App         = var.app_name
+        Environment = var.app_env
+    }
+
+    policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": [
+                "elasticfilesystem:ClientWrite",
+                "elasticfilesystem:ClientMount",
+                "elasticfilesystem:ClientRootAccess"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "Bool": {
+                    "elasticfilesystem:AccessedViaMountTarget": "true"
+                }
+            }
+        }
+    ]
+}
+  POLICY
+   
+}
+
 module "efs_support" {
 
 
