@@ -47,6 +47,8 @@ resource "aws_security_group" "efs_sec_group" {
 resource "aws_efs_file_system" "app_efs" {
   performance_mode = var.efs_perf_mode
   creation_token = "${var.app_name}_${var.app_env}_services"
+  encrypted = var.encrypt
+  throughput_mode = var.throughput_mode
 
 
   lifecycle_policy {
