@@ -25,3 +25,5 @@
 |efs_sec_grp_desc|Description of EFS Security Group|string|null|no|
 |app_env|Deployment environment|string| |yes|
 |app_name|Application name|string| |yes|
+
+-----------------------------------------------------
