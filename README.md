@@ -16,3 +16,4 @@
 |create_efs_policy|Specifies whether to create EFS Policy Statement|bool|false|no|
 |encrypt|Specifies whether EFS File System should be encrypted.| bool|false|no|
 |throughput_mode|The throughput mode of the EFS file system. Valid values are 'bursting' and 'provisioned'.|string|bursting|no|
+|efs_policy|The policy statement string to apply to the EFS file system |string | null | no |
