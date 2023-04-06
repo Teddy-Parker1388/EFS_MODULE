@@ -27,3 +27,10 @@
 |app_name|Application name|string| |yes|
 
 -----------------------------------------------------
+## Outputs Supported
+| Name | Description |
+|------|-------------|
+|efs_dns_name|The DNS name of the created EFS File System|
+
+
+
