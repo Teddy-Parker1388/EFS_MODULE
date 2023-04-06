@@ -34,3 +34,33 @@
 
 
 
+# EXAMPLE
+
+### main.tf
+```
+module "efs_support" {
+
+
+
+    source = "git@github.com:Teddy-Parker1388/EFS_MODULE.git"
+
+    efs_ingress = local.ingress
+    transition_to_ia = "AFTER_60_DAYS"
+    efs_tags = local.common_tags
+    vpc_id = "vpc-0a26fda417df79b23"
+    env_type = var.app_env == "prod" ? "prod" : "non-prod"
+    efs_sec_grp_name = "Example Security Group Name"
+    efs_sec_grp_desc = "Example Security Group Description"
+    app_env = var.app_env
+    app_name = var.app_name
+    encrypt = true
+    create_efs_policy = true
+    efs_policy = local.policy
+
+
+}
+
+```
+
+
+
