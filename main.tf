@@ -1,8 +1,5 @@
 
 
-provider "aws" {
-  profile = "default"
-}
 
 
 data "aws_subnets" "app_tier" {
