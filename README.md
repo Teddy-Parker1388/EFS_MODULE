@@ -12,6 +12,6 @@
 |------|-------------|------|---------|----------|
 |efs_ingress| EFS Ingress Rules|list(object({port = number,protocol = string,cidr = list(string)})) |[] | no |
 |efs_egress| EFS Egress Rules|list(object({port = number,protocol = string,cidr = list(string)})) |[] | no |
-|efs_perf_mode|The performance mode of the EFS file system. Valid values are 'generalPurpose', 'maxIO', and 'throughputOptimized'|string|generalPurpose|
-|create_efs_policy|Specifies whether to create EFS Policy Statement|bool|false|
-|encrypt|Specifies whether EFS File System should be encrypted.| bool|false|
+|efs_perf_mode|The performance mode of the EFS file system. Valid values are 'generalPurpose', 'maxIO', and 'throughputOptimized'|string|generalPurpose|no|
+|create_efs_policy|Specifies whether to create EFS Policy Statement|bool|false|no|
+|encrypt|Specifies whether EFS File System should be encrypted.| bool|false|no|
