@@ -98,7 +98,7 @@ locals {
 
 module "efs_support" {
 
-    source = "git@github.com:Teddy-Parker1388/EFS_MODULE.git"
+    source = var.source
 
    
     transition_to_ia = "AFTER_60_DAYS"
