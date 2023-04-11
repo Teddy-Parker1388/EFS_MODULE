@@ -98,23 +98,31 @@ locals {
 
 module "efs_support" {
 
-
-
     source = "git@github.com:Teddy-Parker1388/EFS_MODULE.git"
 
-    efs_ingress = local.ingress
+   
     transition_to_ia = "AFTER_60_DAYS"
     efs_tags = local.common_tags
     vpc_id = var.vpc_id
+    encrypt = true
+
+    #create security group using child module
+    create_security_group = true
     efs_sec_grp_name = "Example Security Group Name"
     efs_sec_grp_desc = "Example Security Group Description"
-    encrypt = true
+    efs_ingress = local.ingress
+
+    #efs policy
     create_efs_policy = true
     efs_policy = local.policy
-    create_efs_mount_target = true
-    create_efs_back_up_policy  = true
-    provide_subnets = false
+     
+    #efs backup policy
+    create_efs_backup_policy  = true
 
+    #use aws_subnet data block in child module to get subnet ids
+    provide_subnets = false
+    subnet_query_tag = { Name =  "*-prod-app-tier*"}
+    
 
 
 }

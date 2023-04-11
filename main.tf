@@ -1,8 +1,3 @@
-
-provider "aws"{
-  profile = "personal"
-}
-
 locals{
   efs_file_system_id = aws_efs_file_system.app_efs.id
 }
@@ -67,7 +62,7 @@ resource "aws_efs_file_system" "app_efs" {
 
   lifecycle_policy {
     transition_to_ia = var.transition_to_ia
-    #transition_to_primary_storage_class = var.transition_to_primary_storage_class
+
 
   }
 
