@@ -20,17 +20,33 @@
 |transition_to_ia|Period of time that a file is not accessed, after which it transitions to IA storage|string|AFTER_90_DAYS|no|
 |efs_tags|Tags to assign to EFS File System|map(string)|{}|no|
 |vp|c_id|VPC ID for app tier|string| |yes|
-|env_type|Deployment Environment type. Prod/Non-Prod|string| | yes|
 |efs_sec_grp_name|Name of EFS Security Group|string|null|no|
 |efs_sec_grp_desc|Description of EFS Security Group|string|null|no|
-|app_env|Deployment environment|string| |yes|
-|app_name|Application name|string| |yes|
+|create_replication_configuration|Determines whether a replication configuration is created|bool|false|no|
+|replication_configuration_destination|A destination configuration block|map(string)|{}|no|
+|subnet_query_tag|Tags to use in aws_subnets data block|map(string)|{}|no|
+|create_efs_backup_policy|Specifies whether to create efs access backup polcy|bool|false|no|
+|backup_policy_status|A status of the backup policy. Valid values: ENABLED, DISABLED|string|ENABLED|no|
+|create_efs_access_point|Specifies whether to create efs access point|bool|false|no|
+|posix_user|A list  of POSIX user IDs objects for each EFS access point.|type = list(object({gid = number, uid = number}))|[]|no|
+|root_directories|A map of root directories for each EFS access point. Each key is an access point ID and the value is an object with the path to the directory and the creation info, which includes the owner GID and UID, and permissions for that directory.|type = map(object({path           = string ,creation_info = map(object({owner_gid    = number ,owner_uid    = number ,permissions  = string}))}))|{}|no|
+|subnets|The IDs of the subnets. Required if provide_subnets = true|list(string)|[]|no|
+|provide_subnets|Specifies whether to use data block in module to query subnet information (true) or provide subnet information in root module (false)|bool|false|no|
+|create_security_group|Specifies whether to create security group in child module (true) or in root module(false)|bool|false|no|
 
 -----------------------------------------------------
 ## Outputs Supported
 | Name | Description |
 |------|-------------|
 |efs_dns_name|The DNS name of the created EFS File System|
+|efs_mount_target_ids|The IDs of the mount targets for the EFS file system|
+|efs_backup_policy_id|The ID of the backup policy for the EFS file system|
+|efs_access_point_arn|The ARN of the access point for the EFS file system|
+|replication_configuration_destination_file_system_id|The file system ID of the replica|
+|replication_configuration_destination_status|The status of the replication|
+|security_group_id|ID of the security group|
+
+
 
 
 
@@ -89,15 +105,16 @@ module "efs_support" {
     efs_ingress = local.ingress
     transition_to_ia = "AFTER_60_DAYS"
     efs_tags = local.common_tags
-    vpc_id = "vpc-0a26fda417df79b23"
-    env_type = var.app_env == "prod" ? "prod" : "non-prod"
+    vpc_id = var.vpc_id
     efs_sec_grp_name = "Example Security Group Name"
     efs_sec_grp_desc = "Example Security Group Description"
-    app_env = var.app_env
-    app_name = var.app_name
     encrypt = true
     create_efs_policy = true
     efs_policy = local.policy
+    create_efs_mount_target = true
+    create_efs_back_up_policy  = true
+    provide_subnets = false
+
 
 
 }
